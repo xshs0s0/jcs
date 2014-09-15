@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.s0s0.app.exception.JcsException;
+import com.s0s0.app.text.ApplicationError;
 import com.s0s0.app.text.TextManagerAbstract;
 import com.s0s0.app.text.TextRepoInterface;
 import com.s0s0.app.util.ClassUtil;
@@ -53,7 +54,13 @@ public class ClassTextManager extends TextManagerAbstract {
 					Class<?> cls = Class.forName(classname);
 					Object obj = cls.newInstance();
 					if (obj instanceof TextRepoInterface) {
-						trimap.put(language, (TextRepoInterface) obj);
+						if (TextUtil.isTextRepoValid((TextRepoInterface)obj))
+						{
+							trimap.put(language, (TextRepoInterface) obj);
+						} else
+						{
+							throw new Exception(ApplicationError.MISSING_TEXTCODE_IN_IMPLEMENTATION_ERROR);
+						}
 					}
 				} catch (Exception e) {
 					throw new JcsException(e);
