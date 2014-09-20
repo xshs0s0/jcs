@@ -10,6 +10,43 @@ import com.s0s0.app.text.TextRepoInterface;
 
 public class TextUtil {
 	
+	public static String ExtractFileName(String filepath)
+	{
+		String seperator = "/";
+		if (filepath == null)
+			return filepath;
+		filepath = filepath.replaceAll("\\\\", seperator).trim();
+		while (!filepath.isEmpty()&&filepath.endsWith(seperator))
+		{
+			return "";
+		}
+		String[] nameparts = filepath.split(seperator);
+		if ((nameparts != null)&&(nameparts.length>0))
+		{
+			return nameparts[nameparts.length-1];
+		}
+		return filepath;
+	}
+	
+	public static String GetFileExtension(String filename)
+	{
+		if ((filename==null) || (filename.isEmpty()))
+		{
+			return null;
+		} else
+		{
+			filename = filename.trim();
+			int idx = filename.lastIndexOf(".");
+			if ((idx < 0)||(idx==(filename.length()-1)))
+			{
+				return "";
+			} else
+			{
+				return filename.substring(idx+1);
+			}
+		}
+	}
+	
 	public static String FirstLetterUpCase(String in)
 	{
 		if ((in==null) || (in.isEmpty()))

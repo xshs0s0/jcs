@@ -7,5 +7,7 @@ public class TextCode {
 	// file extension already exists
 	public final static String TXT_FEL_02 = "TXT_FEL_02";
 	
-	
+
+	// null search string or content value
+	public final static String TXT_TM_01 = "TXT_TM_01";
 }

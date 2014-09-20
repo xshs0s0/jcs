@@ -11,8 +11,9 @@ public class En implements TextRepoInterface {
 	private static final Map<String, String> textmapping;
 	static {
 		textmapping = new HashMap<String, String>();
-		textmapping.put(TextCode.TXT_FEL_01, "");
-		textmapping.put(TextCode.TXT_FEL_02, "");
+		textmapping.put(TextCode.TXT_FEL_01, "File extension is null or empty");
+		textmapping.put(TextCode.TXT_FEL_02, "File extension already exists");
+		textmapping.put(TextCode.TXT_TM_01, "Null search string or content value");
 	}
 	
 	public En()

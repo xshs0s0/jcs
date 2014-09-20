@@ -45,4 +45,25 @@ public class TextUtilTest extends TestCase {
 		En en = new En();
 		assertTrue(TextUtil.isTextRepoValid(en));
 	}
+	
+	public void testGetFileExtension()
+	{
+		assertNull(TextUtil.GetFileExtension(""));
+		assertNull(TextUtil.GetFileExtension(null));
+		assertTrue(TextUtil.GetFileExtension(".").equals(""));
+		assertTrue(TextUtil.GetFileExtension("t.").equals(""));
+		assertTrue(TextUtil.GetFileExtension(".t").equals("t"));
+		assertTrue(TextUtil.GetFileExtension("f.t").equals("t"));
+	}
+	
+	public void testExtractFileName()
+	{
+		assertNull(TextUtil.ExtractFileName(null));
+		assertTrue(TextUtil.ExtractFileName("").equals(""));
+		assertTrue(TextUtil.ExtractFileName("ab").equals("ab"));
+		assertTrue(TextUtil.ExtractFileName("ab/cv").equals("cv"));
+		assertTrue(TextUtil.ExtractFileName("ab/cd/em.s").equals("em.s"));
+		assertTrue(TextUtil.ExtractFileName("ab\\cd\\em.s").equals("em.s"));
+		assertTrue(TextUtil.ExtractFileName("ab/cd/em.s/").equals(""));
+	}
 }
