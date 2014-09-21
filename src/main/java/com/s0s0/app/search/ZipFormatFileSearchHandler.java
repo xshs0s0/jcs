@@ -53,13 +53,19 @@ public class ZipFormatFileSearchHandler implements SearchHandlerInterface {
 		List<ResultField> resultfields = new ArrayList<ResultField>();
 		QueryTypeEnum type = query.getType();
 		TextMatcherInterface textmatcher = null;
+		boolean casesensitive = true;
 		if (type==QueryTypeEnum.CASE_INSENSITIVE_TEXT_MATCH)
 		{
-			textmatcher = new CaseInsensitiveTextMatcher();
+			textmatcher = new StandardTextMatcher();
+			casesensitive = false;
 		} else if (type==QueryTypeEnum.CASE_SENSITIVE_TEXT_MATCH)
 		{
-			textmatcher = new CaseSensitiveTextMatcher();
-		} else if (type==QueryTypeEnum.REGEX_MATCH)
+			textmatcher = new StandardTextMatcher();
+		} else if (type==QueryTypeEnum.CASE_INSENSITIVE_REGEX_MATCH)
+		{
+			casesensitive = false;
+			textmatcher = new RegexTextMatcher();
+		} else if (type==QueryTypeEnum.CASE_SENSITIVE_REGEX_MATCH)
 		{
 			textmatcher = new RegexTextMatcher();
 		}
@@ -69,7 +75,7 @@ public class ZipFormatFileSearchHandler implements SearchHandlerInterface {
 			String extention = TextUtil.GetFileExtension(zipentryname);
 			if (extensions.contains(extention))
 			{
-				if (textmatcher.match(query.getValue(), zipentryname)) {
+				if (textmatcher.match(query.getValue(), zipentryname, casesensitive)) {
 					List<String> rf = query.getRf();
 					if ((rf==null)|| rf.contains("path"))
 					{
