@@ -54,7 +54,7 @@ public class SearchProfileFile {
             boolean casesensitive = (Boolean) jsonObject.get("casesensitive");
             searchprofile.setCasesensitive(casesensitive);
             boolean regex = (Boolean) jsonObject.get("regex");
-            searchprofile.setCasesensitive(regex);
+            searchprofile.setRegex(regex);
             JSONArray pathsarray = (JSONArray) jsonObject.get("paths");
             List<String> paths = new ArrayList<String>();
             Iterator<String> iterator = pathsarray.iterator();

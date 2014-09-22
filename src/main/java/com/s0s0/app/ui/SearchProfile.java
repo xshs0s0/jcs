@@ -53,4 +53,15 @@ public class SearchProfile {
 	public void setCasesensitive(boolean casesensitive) {
 		this.casesensitive = casesensitive;
 	}
+	
+	public void addPath(String path)
+	{
+		if (!paths.contains(path))
+			paths.add(path);
+	}
+	
+	public boolean deletPath(String path)
+	{
+		return paths.remove(path);
+	}
 }

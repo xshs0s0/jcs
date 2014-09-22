@@ -8,7 +8,7 @@ import com.s0s0.app.exception.JcsException;
 import com.s0s0.app.log.LogManager;
 import com.s0s0.app.util.TextUtil;
 
-public class Searcher implements Runnable {
+public class Searcher extends Thread {
 
 	private Query query;
 	private SearchCallbackInterface callback;
@@ -111,7 +111,7 @@ public class Searcher implements Runnable {
 		}
 	}
 	
-	public void stop()
+	public void shutdown()
 	{
 		this.run = false;
 	}

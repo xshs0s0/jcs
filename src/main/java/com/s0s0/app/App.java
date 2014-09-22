@@ -30,8 +30,8 @@ public class App
 	
     public static void main( String[] args )
     {
-    	 Thread t = new Thread(initSearcher());
-    	 t.start();
+    	 Searcher s = initSearcher();
+    	 s.start();
     	 long starttime = System.currentTimeMillis();
     	 long runtime = 0;
     	 while (!complete.get()) // 30 seconds
